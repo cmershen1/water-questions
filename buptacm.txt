@@ -1,0 +1,9 @@
+Contest ID = 115244 Contest Name = BUPT spring training for 2015 #01 - Virtual Judge
+Contest ID = 116684 Contest Name = BUPT spring training for 2015 #02 - Virtual Judge
+Contest ID = 117026 Contest Name = BUPT spring training for 2015 #03 - Virtual Judge
+Contest ID = 118096 Contest Name = BUPT spring training for 2015 #04 - Virtual Judge
+Contest ID = 118778 Contest Name = BUPT spring training for 2015 #05 - Virtual Judge
+Contest ID = 119198 Contest Name = BUPT spring training for 2015 #06 - Virtual Judge
+Contest ID = 122189 Contest Name = 2016 BUPT summer training #1 - Virtual Judge
+Contest ID = 122755 Contest Name = 2016 BUPT summer training #2 - Virtual Judge
+Contest ID = 123305 Contest Name = 2016 BUPT summer training #3 - Virtual Judge
