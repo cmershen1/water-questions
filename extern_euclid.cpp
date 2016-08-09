@@ -1,3 +1,7 @@
+/*
+author:cmershen
+description:求乘法逆元
+*/
 #include <bits/stdc++.h>
 const int N=1000000007;
 int egcd(int a,int b,int &x,int &y)

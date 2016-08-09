@@ -10,13 +10,13 @@ ll cal(ll n) {
 }
 int main() {
   ll m;
-//  scanf("%I64d", &m);
-  m=1e16;
-  ll l=0,r=1e20,ans=-1;
+  scanf("%I64d", &m);
+
+  ll l=0,r=1e16,ans=-1;
   while(l<r) {
     ll mid=(l+r)/2;
     ll temp=cal(mid);
-    cout<<mid<<' '<<temp<<endl;
+  //  cout<<mid<<' '<<temp<<endl;
     if(temp>m)
       r=mid-1;
     else if(temp==m)
