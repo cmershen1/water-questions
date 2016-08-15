@@ -10,7 +10,7 @@ using namespace std;
 
 int const N=1000010;
 
-struct my
+struct segtree
 {
 	int left,right;
 	int val;
