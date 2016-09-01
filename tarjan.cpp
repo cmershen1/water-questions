@@ -1,6 +1,6 @@
 /*
-author:cmershen
-description:Tarjan算法模板：求无向图的割点和桥
+*@author:cmershen
+*@description:Tarjan算法模板：求无向图的割点和桥
 */
 
 #include <iostream>
