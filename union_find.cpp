@@ -1,37 +1,42 @@
-/*
-*@author:cmershen
-*@description:并查集模板，判断两个人是否在同一个朋友圈里面
-*/
-#include<iostream>
+#include <bits/stdc++.h>
+#define N 1005
+#define eps 1e-9
+#define pi acos(-1.0)
+#define P system("pause")
 using namespace std;
-const int maxn =2e5+10;
-int p[maxn];
-int Find(int x){
-    return p[x]==x?x:p[x]=Find(p[x]);
-}
-void Union(int x,int y){
-    p[Find(x)]=Find(y);
-}
-bool same(int x,int y)
+int f[N];
+int find(int x)
 {
-    return Find(x)==Find(y);
+    return x == f[x] ? x : f[x] = find(f[x]);
 }
-int main(){
-    int n;
-    cin>>n;
-    for(int i=1;i<=2e5;i++)p[i]=i;
-    int op,now=0;
-
-    int a,b;
-    while(n--){
-        cin>>op>>a>>b;
-        if(op==0){
-            Union(q[a],q[b]);
-        }
-        else{
-            if(same(q[a],q[b]))cout<<"yes"<<endl;
-            else cout<<"no"<<endl;
-        }
+int main()
+{
+//freopen("input.txt","r",stdin);
+//freopen("output.txt","w",stdout);
+    int n,m;
+    while(scanf("%d",&n) && n)
+    {
+         scanf("%d",&m);
+         int i;
+         int x,y;
+         for(i = 0; i <= n; i++)
+               f[i] = i;
+         for(i = 0; i < m; i++)
+         {
+               scanf("%d%d",&x,&y);
+               x = find(x);
+               y = find(y);
+               if(x != y) f[x] = y;
+         }
+         int ans = 0;
+         for(i = 1; i <= n; i++)
+        // {cout<<f[i]<<" ";
+                 if(f[i] == i)
+                      ans++;
+         //}cout<<endl;
+         printf("%d\n",ans);
     }
+
+  //  P;
     return 0;
 }

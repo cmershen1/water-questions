@@ -1,6 +1,6 @@
 /*
 *@author:cmershen
-*@description:线段树模板，动态更新求区间最小值问题
+*@description:线段树模板，动态更新求区间最小值问题(单点更新)
 */
 
 #include<iostream>
