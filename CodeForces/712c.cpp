@@ -11,7 +11,7 @@ int main() {
         sort(p.begin(),p.end());
         p[0]=min(p[1]+p[2]-1,x);
         cnt++;
-        cout<<p[0]<<' '<<p[1]<<' '<<p[2]<<endl;//debug
+        //cout<<p[0]<<' '<<p[1]<<' '<<p[2]<<endl;//debug
     }
     cout<<cnt<<endl;
 }
