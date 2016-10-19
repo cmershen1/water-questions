@@ -11,7 +11,7 @@ int main() {
     scanf("%s",s);
 
     for(int i=0;i<n;i++) {
-        printf("s[%d]=%c,ans1=%d,ans2=%d,cnt1=%d,cnt2=%d,flag=%d\n",i,s[i],ans1,ans2,cnt1,cnt2,flag );
+      //  printf("s[%d]=%c,ans1=%d,ans2=%d,cnt1=%d,cnt2=%d,flag=%d\n",i,s[i],ans1,ans2,cnt1,cnt2,flag );
         if(s[i]=='(') {
             cnt1=0;
             ans1=max(ans1,cnt1);
