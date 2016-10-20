@@ -22,8 +22,8 @@ int main() {
     char s1[10],s2[10];
     gets(s1);
     gets(s2);
-    cout<<f(s1)<<","<<f(s2)<<endl;
-    int s=f(s1)-f(s2);
+    //cout<<f(s1)<<","<<f(s2)<<endl;
+    int s=f(s2)-f(s1);
     if(s==0 || s==2 ||s==-5 || s==3 || s==-4)
         cout<<"YES"<<endl;
     else
