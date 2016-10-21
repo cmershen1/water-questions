@@ -1,3 +1,4 @@
+//source:2016CCPC东北地区大学生程序设计竞赛 - 重现赛 
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -7,7 +8,7 @@ int main() {
     scanf("%d",&t);
     for(int i=1;i<=t;i++) {
         scanf("%I64d %I64d",&a,&b);
-        printf("Case: #%d\n", i);
+        printf("Case #%d:\n", i);
         if(a==b)
             printf("1\n%I64d %I64d\n", a,b);
         else {
