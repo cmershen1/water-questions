@@ -1,9 +1,7 @@
-//source:2016CCPC东北地区大学生程序设计竞赛 - 重现赛
-//一直T，不知道怎么解决ing。。。
-
+////source:2016CCPC东北地区大学生程序设计竞赛 - 重现赛
 #include <bits/stdc++.h>
 using namespace std;
-
+typedef long long ll;
 int T;
 int n,q,u,v,mi;
 vector<int> g[100005];
@@ -12,16 +10,15 @@ int dp[100005];
 int dp2[100005];
 int m[100005];
 int deep[100005];
-
-int dep;
 int ans;
-void dfs(int u,int par) {
-    deep[u]=++dep;
-    fa[u]=par;
+void dfs(int u,int par,int d) {
+    deep[u]=d;
+    if(!fa[u])
+        fa[u]=par;
     for(int i=0;i<g[u].size();i++) {
         int v=g[u][i];
-        if(v!=par) {
-            dfs(v,u);
+        if(!fa[v]) {
+            dfs(v,u,d+1);
             dp[u]++;
         }
     }
@@ -35,6 +32,9 @@ void solve() {
         int u=m[i];
         if(dp2[u]==0)//u点非重要 且u点的孩子没有重要点
             dp2[fa[u]]--;
+    }
+    for(int i=0;i<mi;i++) {
+        int u=m[i];
         if(dp2[u]>=2)
             ans++;
     }
@@ -43,27 +43,23 @@ int main() {
     scanf("%d",&T);
     for(int t=1;t<=T;t++) {
         scanf("%d %d",&n,&q);
-        //memset(fa,0,sizeof(fa));
+        memset(fa,0,sizeof(fa));
         memset(dp,0,sizeof(dp));
-        //memset(deep,0,sizeof(deep));
+        memset(deep,0,sizeof(deep));
         memset(g,0,sizeof(g));
         for(int i=0;i<n-1;i++) {
             scanf("%d %d",&u,&v);
             g[u].push_back(v);
             g[v].push_back(u);
         }
-        dep=0;
-        dfs(1,-1);//确定父子关系和深度
-        // for(int i=1;i<=n;i++) {
-        //     printf("fa[%d] = %d,dp[%d] = %d\n", i,fa[i],i,dp[i]);
-        // }
+        dfs(1,-1,0);//确定父子关系和深度
         printf("Case #%d:\n",t);
         while(q--) {
-            memset(m,0,sizeof(m));
+        //    memset(m,0,sizeof(m));这句不注释掉会T！！！T了13发！！！！！！
             scanf("%d",&mi);
-            for(int i=0;i<mi;i++) {
+            for(int i=0;i<mi;i++)
                 scanf("%d",&m[i]);
-            }
+
             for(int i=0;i<mi;i++)
                 dp2[m[i]]=dp[m[i]];
             ans=n-mi;
