@@ -1,3 +1,4 @@
+//source:2016CCPC东北地区大学生程序设计竞赛 - 重现赛
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -53,8 +54,8 @@ int main() {
           if(s.empty())
             printf("%d\n", (r-l+1)&1);
           else {
-            set<int>::iterator i = s.end();
-            i--;
+            set<int>::iterator i = s.last();
+            //i--;
            //printf("Debug: begin=%d,end=%d,l=%d,r=%d,d=%d\n",*s.begin(),*i,l,r,d);
             if(d==0) {
               if(*i-l>1)

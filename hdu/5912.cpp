@@ -11,7 +11,6 @@ ll gcd(ll a,ll b) {
 }
 void solve() {
   ll x=a[n],y=1;//初始化为an,每轮迭代都记为x/y
-  // printf("Start: x=%I64d y=%I64d\n",x,y);
   ll g=1;
   for(int i=n;i>=1;i--) { //迭代n次
     ll x2=x,y2=y;//记录下来
@@ -20,8 +19,6 @@ void solve() {
     g=gcd(x,y);
     x/=g;
     y/=g;
-    //debug
-    // printf("Round %d: x=%I64d y=%I64d\n",n-i+1,x,y);
   }
   g=gcd(x,y);
   p=x/g,q=y/g;
