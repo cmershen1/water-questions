@@ -1,3 +1,9 @@
+/*
+*@author:cmershen
+*@description:求[1,n]里面有多少个素数，n的范围最大到1e11
+*@source:2016 ACM/ICPC Regional Contest Shenyang Online(hdu 5901)
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;

@@ -1,7 +1,7 @@
 /**
-*POJ 2891 模板题
-*中国剩余定理（不互质模板）
-*求模线性方程组x=ai(mod ni),ni可以不互质
+*@source:POJ 2891
+*@中国剩余定理（不互质模板）
+*@求模线性方程组x=ai(mod ni),ni可以不互质
 */
 #include <iostream>
 #include <cstdio>

@@ -1,3 +1,8 @@
+/*
+*@author:cmershen
+*@description:Sunday算法模板，求字符串匹配个数
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
