@@ -3,12 +3,12 @@ using namespace std;
 typedef long long ll;
 #define INF 0x3f3f3f3f
 int t,n,m,k,a,b,l;
-int cnt;//记录其中一种颜色点的数目
+
 int p[510];//记录每个点的颜色,0没染，1黑色，2白色
 int dis[510][510];//因为要算距离，所以用邻接矩阵存图
 vector<int> g[510];
 int f[510],vis[510];
-int cnt2;
+int cnt;
 void floyd() {
     for(int k=1;k<=n;k++)
         for(int i=1;i<=n;i++)
@@ -28,10 +28,7 @@ void initGraph() {
     }
 }
 bool dfs(int u,int col) { //给i点染col色
-    //cout<<u<<","<<col<<endl;
     p[u]=col;
-    if(col==2)
-        cnt++;
     for(int i=0;i<g[u].size();i++) {
         int v=g[u][i];
         if(p[v]==col)//如果相邻的两个点颜色一样，那就是非法的
@@ -48,7 +45,6 @@ bool dfs(int u,int col) { //给i点染col色
     return true;
 }
 bool paint() {
-    //v1.clear();v2.clear();
     for(int i=1;i<=n;i++) {
         if(p[i]==0) {
             p[i]=1;
@@ -75,17 +71,17 @@ bool match() {
     for(int i=1;i<=n;i++) {
         if(f[i]==-1) {
             memset(vis,0,sizeof(vis));
-            cnt2+=dfs2(i);
+            cnt+=dfs2(i);
         }
     }
-    return cnt2*2==n;
+    return cnt*2==n;
 }
 void solve() {
     int con=1;
     for(int i=1;i<=n;i++)
         if(dis[1][i]<INF)
             con++;
-    if(!paint() || cnt*2!=n || con<n || !match())
+    if(!paint() || con<n || !match())
         printf("Impossible\n");
     else {
         vector<int> ans;
@@ -107,7 +103,7 @@ int main() {
             dis[i][i]=0;
         memset(p,0,sizeof(p));
         memset(g,0,sizeof(g));
-        cnt=0;cnt2=0;
+        cnt=0;
         while(m--) {
             scanf("%d %d %d",&a,&b,&l);
             dis[a][b]=l;dis[b][a]=l;
