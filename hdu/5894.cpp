@@ -68,10 +68,10 @@ int main() {
         ll a = 1;
         for(int i=1;i<m;i++) {
             //cout<<i<<endl;
-            a=(qmod(a,(n-m*k-i),M))%M;
+            a=qmod(a,(n-m*k-i),M);
         }
         a=(a*n)%M;
         a=(a*pre[m])%M;
-        printf("%I64d\n", a%M);
+        printf("%I64d\n", a);
     }
 }
