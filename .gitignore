@@ -1,3 +1,5 @@
 *.in
 *.out
+in.txt
+out.txt
 temp/
