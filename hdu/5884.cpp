@@ -3,8 +3,6 @@ using namespace std;
 typedef long long ll;
 int t0,t,n;
 int a[100005];
-#define RE freopen("in.txt","r",stdin)
-#define WR freopen("out.txt","w",stdout)
 int cost(int x) {
     queue<int> q1,q2;
     int ans=0;
@@ -58,7 +56,6 @@ int cost(int x) {
     return ans;
 }
 int main() {
-    RE;WR;
     scanf("%d",&t0);
     while(t0--) {
         scanf("%d %d",&n,&t);
