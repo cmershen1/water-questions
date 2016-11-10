@@ -67,7 +67,7 @@ struct Trie{
         int res = 0;
         for(int i = 0;i < len;i++){
             if(buf[i]>='a'&&buf[i]<='z') now = next[now][buf[i]-'a'];
-            //else if(buf[i]>='A'&&buf[i]<='Z') now = next[now][buf[i]-'A'];
+            else if(buf[i]>='A'&&buf[i]<='Z') now = next[now][buf[i]-'A'];
             else continue;
             int temp = now;
             while( temp != root ){
