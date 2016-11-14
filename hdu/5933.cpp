@@ -17,7 +17,7 @@ int main() {
         sum=0;
         for(int i=1;i<=n;i++) {
             scanf("%I64d",&a[i]);
-            sum+=a[i];
+            sum+=a[i];  
         }
         if(sum%k) {
             printf("Case #%d: -1\n",t);

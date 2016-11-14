@@ -22,7 +22,7 @@ void initGraph() {
         for(int j=i+1;j<=n;j++) {
             if(dis[i][j]<=k) {
                 g[i].push_back(j);
-                g[j].push_back(i);
+                g[j].push_back(i);        
             }
         }
     }
