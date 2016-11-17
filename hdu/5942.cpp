@@ -72,7 +72,6 @@ ll solve() {
     ll ans=0;
     for(ll p=1;p*p<n;p++) {
         ans=(ans+Sum(p,n/p)-phi[p])%M;
-        //ans=(ans+coprime(p+1,n/p,p))%M;
     }
     return (ans*2+1)%M;
 }
