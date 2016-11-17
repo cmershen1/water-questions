@@ -34,9 +34,7 @@ ll solve() {
     return ans;
 }
 int main() {
-    RE("in.txt");
-    WR("out.txt");
-    clock_t start=clock();
+
     pre();
 
     scanf("%d",&T);
@@ -45,6 +43,5 @@ int main() {
         ll ans=solve();
         printf("Case #%d: %I64d\n", t,ans);
     }
-    clock_t end=clock();
-    cout<<(double)(end-start)/CLOCKS_PER_SEC<<endl;
+
 }
