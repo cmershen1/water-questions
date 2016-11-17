@@ -1,4 +1,4 @@
-#pragma comment(linker, "/STACK:1024000000,1024000000")
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -17,7 +17,7 @@ int main() {
         sum=0;
         for(int i=1;i<=n;i++) {
             scanf("%I64d",&a[i]);
-            sum+=a[i];  
+            sum+=a[i];
         }
         if(sum%k) {
             printf("Case #%d: -1\n",t);
