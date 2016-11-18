@@ -54,7 +54,7 @@ int main() {
           if(s.empty())
             printf("%d\n", (r-l+1)&1);
           else {
-            set<int>::iterator i = s.last();
+            set<int>::iterator i = s.end();
             //i--;
            //printf("Debug: begin=%d,end=%d,l=%d,r=%d,d=%d\n",*s.begin(),*i,l,r,d);
             if(d==0) {
