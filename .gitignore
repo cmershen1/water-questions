@@ -2,5 +2,6 @@
 *.out
 in.txt
 out.txt
+*.o
 temp/
 blogmd/

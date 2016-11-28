@@ -43,13 +43,14 @@ void pre() {
 int find(ll x) {
     int l=1,r=44721;
     while(l<r) {
+		//cout<<l<<","<<r<<endl;
         int mid=(l+r)/2;
-        if(a[mid]<=x && x<=a[mid+1])
+        if(a[mid]<=x && x<a[mid+1])
             return mid;
         else if(a[mid]>x)
             r=mid;
         else
-            l=mid;
+            l=mid+1;
     }
     return -1;
 }
@@ -59,18 +60,25 @@ int main() {
     scanf("%d",&T);
     while (T--) {
         scanf("%I64d",&n);
+		if(n<=4) {
+			printf("%lld\n",n);
+			continue;
+		}
         int k=find(n);
         int s=n-a[k];
         ll ans=0;
-        if(s==n) {
+		if(s==0) {
+			ans=b[k];
+		}
+	    else if(s==k) {
             ans=b[k]*c[2]%M;
-            ans=ans*(n+2)%M;
+            ans=ans*(k+2)%M;
         }
         else {
             ans=b[k]*c[k+1-s]%M;
-            ans=ans*(n+1)&M;
+            ans=ans*(k+1)%M;
         }
-        printf("%I64d\n", ans);
+        printf("%lld\n", ans);
 
     }
     return 0;

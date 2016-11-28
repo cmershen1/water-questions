@@ -34,3 +34,4 @@ int main() {
   scanf("%d", &n);
   printf("%d关于%d的乘法逆元是%d.\n", n, N, cal(n));
 }
+
