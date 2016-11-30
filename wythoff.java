@@ -1,4 +1,8 @@
-
+/**
+*@author:cmershen
+*@description:wythoff博弈，先手赢输出1，后手赢输出0，数据范围10^100.如果更大了就提高gold 的精度即可
+*@source:hdu 5973
+*/
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Scanner;
