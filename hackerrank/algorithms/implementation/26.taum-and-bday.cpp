@@ -8,6 +8,6 @@ int main(){
     while(t--) {
         cin>>b>>w;
         cin>>x>>y>>z;
-        cout<<min(b*x+w*y,(b+w)*y+z*b,(b+w)*x+z*w);
+        cout<<min(b*x+w*y,min((b+w)*y+z*b,(b+w)*x+z*w));
     }
 }
