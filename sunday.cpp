@@ -1,65 +1,47 @@
 /*
 *@author:cmershen
-*@description:Sunday算法模板，求字符串匹配个数
+*@description:Sunday算法模板，求字符串首次出现位置
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-int SUNDAY(int *text, int *patt,int n,int m)
+int sunday(const char* src, const char* des)
 {
-    int cnt = 0;
-    register size_t temp[256];
-    size_t *shift = temp;
-    size_t i, patt_size = m, text_size = n;
-    //cout << "size : " << patt_size << endl;
-    for( i=0; i < 256; i++ )
+    int len_s = strlen(src);
+    int len_d = strlen(des);
+    int next[26] = {0};
+    for (int j = 0; j < 26; ++j)
+        next[j] = len_d + 1;
+    for (int j = 0; j < len_d; ++j)
+        next[des[j] - 'a'] = len_d - j; //记录字符到最右段的最短距离+1
+    //例如:des = "abcedfb"
+    //next = {7 1 5 4 3 2 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8}
+    int pos = 0;
+    while (pos < (len_s - len_d + 1)) //末端对齐
     {
-        *(shift+i) = patt_size+1;
-    }
-    for( i=0; i < patt_size; i++ )
-    {
-        *(shift+(unsigned char)(*(patt+i))) = patt_size-i;
-    }
-    //shift['s']=6 步,shitf['e']=5 以此类推
-    size_t limit = text_size - patt_size+1;
-    for(i=0; i < limit; i += shift[ text[i+patt_size] ])
-    {
-        if( text[i] == *patt )
+        int i = pos;
+        int j;
+        for (j = 0; j < len_d; ++j, ++i)
         {
-            int *match_text = text + i + 1;
-            size_t match_size = 1;
-            do
+            if (src[i] != des[j])
             {
-                // 输出所有匹配的位置
-                if( match_size == patt_size )
-                {
-                    //cout << "the NO. is " << i << endl;
-                    cnt++;
-                }
-            }while((*match_text++) == patt[match_size++]);
+                pos += next[src[pos + len_d] - 'a'];
+                //不等于就跳跃,跳跃是核心
+                break;
+            }
         }
+        if ( j == len_d )
+            return pos;
     }
-    //cout << endl;
-    return cnt;
+    return -1;
 }
-int main(void)
+
+
+int main()
 {
-    int text[17] = {1,2,3,4,5,6,7,8,9,5,6,7,2,3,4,5,6};
-    int patt[3] = {3,6};
-
-    int text2[1000];
-    for(int i=0;i<3;i++) {
-        int d=0,s=i;
-        while(s<17) {
-            text2[d]=text[s];
-            d++;
-            s+=3;
-        }
-        cout<<SUNDAY(text2,patt,d,2)<<endl;
-    }
-
-
-    //cout << SUNDAY(text, patt,17,3) << endl;
+    char src[]="abcdacdaahfacabcdabcdeaa";
+    char des[]="abcde";
+    cout<<sunday(src,des)<<endl;
     return 0;
 }
