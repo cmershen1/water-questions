@@ -7,19 +7,19 @@
 using namespace std;
 
 const int N = 1000002;
-int next[N];
+int Next[N];
 char S[N], T[N];
 int slen, tlen;
 
 void getNext()
 {
     int j, k;
-    j = 0; k = -1; next[0] = -1;
+    j = 0; k = -1; Next[0] = -1;
     while(j < tlen)
         if(k == -1 || T[j] == T[k])
-            next[++j] = ++k;
+            Next[++j] = ++k;
         else
-            k = next[k];
+            k = Next[k];
 
 }
 /*
@@ -38,7 +38,7 @@ int KMP_Index()
             i++; j++;
         }
         else
-            j = next[j];
+            j = Next[j];
     }
     if(j == tlen)
         return i - tlen;
@@ -64,13 +64,13 @@ int KMP_Count()
     for(i = 0; i < slen; i++)
     {
         while(j > 0 && S[i] != T[j])
-            j = next[j];
+            j = Next[j];
         if(S[i] == T[j])
             j++;
         if(j == tlen)
         {
             ans++;
-            j = next[j];
+            j = Next[j];
         }
     }
     return ans;
