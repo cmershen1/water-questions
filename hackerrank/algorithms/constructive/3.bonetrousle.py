@@ -19,5 +19,5 @@ for tt in range(t):
                 a-=1
         #print ans
         for i in range(1,b,1):
-            print ans[i],
+                print ans[i],
         print ans[b]
