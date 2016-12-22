@@ -4,8 +4,6 @@ typedef long long ll;
 #define RE(s) freopen(s,"r",stdin)
 #define WR(s) freopen(s,"w",stdout)
 int main(){
-    RE("in.txt");
-    WR("out.txt");
     int n,k;
     string s;
     cin>>n>>k>>s;
@@ -30,19 +28,20 @@ int main(){
     else {
         i=0;j=n-1;
         while(i<j && k>0) {
-            if(vis[i]^vis[j]) {//有一个为1，说明改了一边
-                vis[i]=vis[j]=true;
-                s[i]=s[j]='9';
-                k--;
-                i++;j--;
-            }
-            else { //两边都没改
-                if(k>=2 && s[i]!='9') {
+            if(s[i]!='9') {
+                if(vis[i]^vis[j]) {//有一个为1，说明改了一边
+                    vis[i]=vis[j]=true;
                     s[i]=s[j]='9';
-                    k-=2;
+                    k--;
                 }
-                i++;j--;
+                else { //两边都没改
+                    if(k>=2) {
+                        s[i]=s[j]='9';
+                        k-=2;
+                    }
+                }
             }
+            i++;j--;
         }
         if(i==j && k)
             s[i]=s[j]='9';
