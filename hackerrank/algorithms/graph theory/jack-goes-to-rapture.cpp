@@ -50,8 +50,6 @@ void dfs(int u,int dis) {
     }
 }
 int main() {
-    RE("in.txt");
-    //WR("out.txt");
     memset(vis,0,sizeof(vis));
     cin>>n>>m;
     for(int i=0;i<n;i++) {
