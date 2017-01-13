@@ -17,27 +17,19 @@ typedef vector<ll> vl;
 const int M = 1e9 + 7;
 const double PI = acos(-1.0);
 
-const int MAXN = 1e5;
-const int MAXM = 1e6;
+const int MAXN = 1e5 + 5;
+const int MAXM = 1e6 + 6;
 
 int main() {
     //RE("in.txt");WR("out.txt");
-    int g,p;
-    cin>>g;
-    while(g--) {
-        int sg=0,t;
-        cin>>t;
-        while(t--) {
-            cin>>p;
-            if(p&1)
-                sg^=p+1;
-            else
-                sg^=p-1;
-        }
-        if(sg)
-            cout<<"W"<<endl;
-        else
-            cout<<"L"<<endl;
+    ll f[MAXN];
+    f[1]=1;
+    for(int i=2;i<=100000;i++) {
+        f[i]=(f[i-1]*i)%M;
     }
-    return 0;
+    ll n;
+    cin>>n;
+    ll x=n*(1e9+8)/2;
+    x=x%M;
+    cout<<x*f[n]%M<<endl;
 }

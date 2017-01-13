@@ -17,27 +17,25 @@ typedef vector<ll> vl;
 const int M = 1e9 + 7;
 const double PI = acos(-1.0);
 
-const int MAXN = 1e5;
-const int MAXM = 1e6;
+const int MAXN = 1e5 + 5;
+const int MAXM = 1e6 + 5;
 
 int main() {
     //RE("in.txt");WR("out.txt");
-    int g,p;
-    cin>>g;
-    while(g--) {
-        int sg=0,t;
-        cin>>t;
-        while(t--) {
-            cin>>p;
-            if(p&1)
-                sg^=p+1;
-            else
-                sg^=p-1;
+    int n;
+    int a[105];
+    cin>>n;
+    for (int i = 0; i < n; i++) 
+        cin>>a[i];
+    sort(a,a+n);
+    int ans=0;
+    for(int i=0;i<n;i++) {
+        int temp=1;
+        for(int j=i+1;j<n;j++) {
+            if(a[j]-a[i]<=1)
+                temp++;
         }
-        if(sg)
-            cout<<"W"<<endl;
-        else
-            cout<<"L"<<endl;
+        ans=max(ans,temp);
     }
-    return 0;
+    cout<<ans<<endl;
 }
