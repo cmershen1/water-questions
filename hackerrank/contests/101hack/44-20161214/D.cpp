@@ -9,6 +9,9 @@ using namespace std;
 #define INF 0x3f3f3f3f
 #define eps 1e-8
 
+#define LEFT idx<<1,begin,mid
+#define RIGHT idx<<1|1,mid+1,end
+
 typedef long long ll;
 typedef vector<int> vi;
 typedef pair<int,int> pi;
@@ -69,8 +72,8 @@ void build(int idx,int begin,int end) {
         segtree[idx].cnt[s[begin-1]-'a']++;
     else {
         int mid=(begin+end)/2;
-        build(idx*2,begin,mid);
-        build(idx*2+1,mid+1,end);
+        build(LEFT);
+        build(RIGHT);
         segtree[idx]=merge(segtree[idx*2],segtree[idx*2+1]);
     }
 }
@@ -83,8 +86,8 @@ void update(int idx,int begin,int end,int l,int r,int v) {
     else {
         down(idx);
         int mid=(begin+end)/2;
-        update(idx*2,begin,mid,l,r,v);
-        update(idx*2+1,mid+1,end,l,r,v);
+        update(LEFT,l,r,v);
+        update(RIGHT,l,r,v);
         segtree[idx]=merge(segtree[idx*2],segtree[idx*2+1]);
     }
 }
@@ -97,8 +100,8 @@ node query(int idx,int begin,int end,int l,int r) {
     else {
         down(idx);
         int mid=(begin+end)/2;
-        node a=query(idx*2,begin,mid,l,r);
-        node b=query(idx*2+1,mid+1,end,l,r);
+        node a=query(LEFT,l,r);
+        node b=query(RIGHT,l,r);
         return merge(a,b);
     }
 }
