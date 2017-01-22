@@ -8,3 +8,4 @@ blogmd/
 .vscode
 .vscode/
 *.exe
+*.json
