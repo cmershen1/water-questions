@@ -20,7 +20,7 @@ typedef vector<ll> vl;
 const int M = 1e9 + 7;
 const double PI = acos(-1.0);
 
-const int MAXN = 1e3;
+const int MAXN = 1e5;
 const int MAXM = 1e6;
 ll a[MAXN+5];
 int n;
@@ -34,15 +34,18 @@ int main() {
     for(int i=1;i<=n;i++) {
         cin>>a[i];
     }
+    if(n==1) {
+        cout<<a[1]+1<<endl;
+        return 0;
+    }
     ms(pre,0);ms(suf,0);
-    //预处理前缀gcd和后缀gcd
     pre[1]=a[1];
     for(int i=2;i<=n;i++)
         pre[i]=gcd(a[i],pre[i-1]);
     suf[n]=a[n];
     for(int i=n-1;i>=1;i--)
         suf[i]=gcd(a[i],suf[i+1]);
-    
+    bool flag=false;
     for(int i=1;i<=n;i++) {
         ll g;
         if(i==1)
@@ -52,10 +55,12 @@ int main() {
         else
             g=gcd(pre[i-1],suf[i+1]);
         
-        if(gcd(g,a[i])==1) {
+        if(a[i]%g) {
             cout<<g<<endl;
-            //break;
+            flag=true;
+            break;
         }
-            
     }
+    if(!flag)
+        cout<<-1<<endl;
 }
