@@ -115,7 +115,11 @@ ll solve(int x,int y) {
     for(int i=0;i<27;i++) {
         pre[i]=0;suf[i]=0;even[i]=0;odd[i]=0;
     }
+<<<<<<< HEAD
     node d=query(1,1,n,x+1,y+1);//得到结果节点
+=======
+    node d=query(1,1,n,x+1,y+1);
+>>>>>>> c3bc45e0265d2a23d3dc1f76e4b01a98c74f8382
     for(int i=0;i<26;i++) {
         int c=d.cnt[i];
         if(c==0) {
@@ -123,7 +127,11 @@ ll solve(int x,int y) {
             odd[i]=0;
         }
         else {
+<<<<<<< HEAD
             even[i]=odd[i]=qmod(2,c-1,M);//直接用1<<(c-1)肯定会爆ll
+=======
+            even[i]=odd[i]=qmod(2,c-1,M);
+>>>>>>> c3bc45e0265d2a23d3dc1f76e4b01a98c74f8382
         }
     }
     pre[0]=1;suf[26]=1;
@@ -131,7 +139,11 @@ ll solve(int x,int y) {
         pre[i]=(pre[i-1]*even[i-1])%M;
     for(int i=25;i>=0;i--)
         suf[i]=(suf[i+1]*even[i])%M;
+<<<<<<< HEAD
     ll ans=suf[0];//不考虑奇数个字母的出现，答案为(even[0]*...*even[25])%M
+=======
+    ll ans=suf[0];
+>>>>>>> c3bc45e0265d2a23d3dc1f76e4b01a98c74f8382
 
     for(int i=0;i<26;i++) {
         ll temp=(pre[i]*odd[i])%M;
@@ -143,7 +155,11 @@ ll solve(int x,int y) {
 }
 
 int main() {
+<<<<<<< HEAD
     RE("in.txt");WR("out.txt");
+=======
+    //RE("in.txt");WR("out.txt");
+>>>>>>> c3bc45e0265d2a23d3dc1f76e4b01a98c74f8382
     cin>>n>>q;
     cin>>s;
     // cout<<n<<" "<<q<<endl;
