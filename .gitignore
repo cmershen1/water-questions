@@ -5,11 +5,6 @@ out.txt
 *.o
 temp/
 blogmd/
-<<<<<<< HEAD
-*.exe
-=======
-.vscode
 .vscode/
 *.exe
 *.json
->>>>>>> c3bc45e0265d2a23d3dc1f76e4b01a98c74f8382
