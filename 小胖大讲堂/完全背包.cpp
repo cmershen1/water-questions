@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cmath>
 using namespace std;
 int n,m;
 int w[1000],v[1000];
@@ -11,7 +12,7 @@ int main() {
     for(int i=0;i<n;i++) {
         cin>>v[i];
     }
-    memset(dp,0,sizeof(dp));
+    //memset(dp,0,sizeof(dp));
     for(int i=0;i<n;i++) {
         for(int j=w[i];j<=m;j++) {
             dp[j]=max(dp[j],dp[j-w[i]]+v[i]);

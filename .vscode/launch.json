@@ -1,12 +1,12 @@
 {
-    "version": "0.2.0",
+    "version": "0.1.0",
     "configurations": [
 
         {
             "name": "C++ Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/temp/a.exe",
+            "program": "${workspaceRoot}/temp/a.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
@@ -23,7 +23,7 @@
                 ]
             },
             "osx": {
-                "MIMode": "lldb"
+                "MIMode": "gdb"
             },
             "windows": {
                 "MIMode": "gdb",
@@ -53,7 +53,7 @@
                 ]
             },
             "osx": {
-                "MIMode": "lldb"
+                "MIMode": "gdb"
             },
             "windows": {
                 "MIMode": "gdb",
