@@ -12,9 +12,11 @@ int main() {
     }
     dp[1] = a[1][1];
     for(int i=2;i<=n;i++) {
-        for(int j=n;j>=1;j--) {
+        dp[i]=dp[i-1]+a[i][i];
+        for(int j=n-1;j>=2;j--) {
             dp[j] = max(dp[j],dp[j-1])+a[i][j];
         }
+        dp[1]=dp[1]+a[i][1];
     }
     int ans=-1;
     for(int i=1;i<=n;i++)
