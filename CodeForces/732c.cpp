@@ -4,7 +4,7 @@ typedef long long ll;
 int main() {
     ll a,b,c;
     cin>>a>>b>>c;
-    ll ans=LONG_MAX;
+    ll ans=LONG_LONG_MAX;
     ll m=max(a,max(b,c));
     ans=min(ans,m-a+m-b+m-c);
 
