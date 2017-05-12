@@ -8,7 +8,7 @@ vector<int> g[MAXN],g2[MAXN];
 
 bool vis[MAXN];
 int belong[MAXN];
-int cnt=1;
+
 void dfs(int u, int cur) {
     if(vis[u]) return;
     vis[u]=true;
