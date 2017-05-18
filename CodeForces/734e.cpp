@@ -7,7 +7,6 @@ int col[MAXN];
 vector<int> g[MAXN],g2[MAXN];
 
 bool vis[MAXN];
-int belong[MAXN];
 
 void dfs(int u, int cur) {
     if(vis[u]) return;
@@ -39,6 +38,7 @@ void dfs2(int u, int dis) {
 }
 int main() {
     ios::sync_with_stdio(false);
+    cin.tie(0);
     int n,a,b;
     cin>>n;
     for(int i=1;i<=n;i++) {
@@ -50,13 +50,12 @@ int main() {
         g[b].push_back(a);
     }
     memset(vis,0,sizeof(vis));
-    memset(belong,0,sizeof(belong));
     dfs(1,1);//缩点
     //找最大路径
     memset(vis,0,sizeof(vis));
-    dfs2(1,0);
+    dfs2(1,1);
     memset(vis,0,sizeof(vis));
-    dfs2(max_node,0);
+    dfs2(max_node,1);
 
-    cout<<(max_dis+1)/2<<endl;
+    cout<<max_dis/2<<endl;
 }
