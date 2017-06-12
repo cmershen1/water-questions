@@ -18,7 +18,7 @@ int main() {
         if(x==0) {
             ans+=m[k]*(m[k]-1);
         } else {
-        ans+=m[k]*i.second;
+            ans+=m[k]*i.second;
         }
     }
     cout<<ans/2<<endl;
