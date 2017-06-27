@@ -18,26 +18,21 @@ int main() {
         }
         memset(dp,0,sizeof(dp));
         memset(dp2, 0x3f, sizeof(dp2));
-        int len=-1;
         dp[0]=1;dp2[0]=0;
+        int len=-1;
         for(int i=1;i<=n;i++) {
-            int cnt[30];
-            memset(cnt,0,sizeof(cnt));
+            int minc=a[s[i]-'a'];
             for(int j=i;j>0;j--) {
-                int u=s[j] - 'a';
-                cnt[u]++;
-                if(cnt[u]>a[u]) { 
-                    break;
-                }
-                dp[i]=(dp[i]+dp[j-1])%M;
-                if(j!=1) {
-                    len=max(len,i-j+1);
+                int u=s[j]-'a';
+                minc=min(minc, a[u]);
+                if(i-j+1<=minc) {
+                    dp[i]=(dp[i]+dp[j-1])%M;
                     dp2[i]=min(dp2[i], dp2[j-1]+1);
-                }
+                    len=max(len,i-j+1);
+                } else 
+                    break;
             }
         }
-        cout<<dp[n]<<endl;
-        cout<<len<<endl;
-        cout<<dp2[n]<<endl;
+        cout<<dp[n]<<endl<<len<<endl<<dp2[n]<<endl;
     }
 }
