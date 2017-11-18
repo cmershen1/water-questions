@@ -54,11 +54,6 @@ int main() {
             g=pre[n-1];
         else
             g=gcd(pre[i-1],suf[i+1]);
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> c3bc45e0265d2a23d3dc1f76e4b01a98c74f8382
         if(a[i]%g) {
             cout<<g<<endl;
             flag=true;
@@ -67,8 +62,5 @@ int main() {
     }
     if(!flag)
         cout<<-1<<endl;
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> c3bc45e0265d2a23d3dc1f76e4b01a98c74f8382

@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-#include <cmath>
-#include <cstdio>
-#include <vector>
-#include <iostream>
-#include <algorithm>
-using namespace std;
-
-
-int main() {
-=======
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -32,8 +21,6 @@ const int MAXN = 1e5;
 const int MAXM = 1e6;
 
 int main() {
-    //RE("in.txt");WR("out.txt");
->>>>>>> c3bc45e0265d2a23d3dc1f76e4b01a98c74f8382
     int g,p;
     cin>>g;
     while(g--) {

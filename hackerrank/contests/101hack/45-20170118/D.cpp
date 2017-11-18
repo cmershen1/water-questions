@@ -77,11 +77,7 @@ void pre() {
         for(int i=1;i<n;i++) {
             x0[i]=(x0[i-1]*b)%M;
             x0[i]=(x0[i]*cal(a))%M;
-<<<<<<< HEAD
-            x0[i]=M-x0[i];
-=======
             x0[i]=M-x0[i];//注意把结果一定要限定在[0,M)范围内，负数要修正，这里相当于乘以-1！！
->>>>>>> c3bc45e0265d2a23d3dc1f76e4b01a98c74f8382
         }
     }
 }
@@ -96,11 +92,7 @@ int main() {
         int x,y,z;
         cin>>x>>y>>z;
         if(x==1) {
-<<<<<<< HEAD
-            ll delta=((z-c[++y]+M)*x0[y-1])%M;
-=======
             ll delta=((z-c[++y]+M)*x0[y-1])%M;//同样的，这里直接写z-c[++y]会wa，但是因为2M*M大约是2e18，也不会爆ll（最大到9e18），这里不用加%M。
->>>>>>> c3bc45e0265d2a23d3dc1f76e4b01a98c74f8382
             add(y,delta);
             c[y]=z;
         }
@@ -122,8 +114,4 @@ int main() {
             }
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c3bc45e0265d2a23d3dc1f76e4b01a98c74f8382
