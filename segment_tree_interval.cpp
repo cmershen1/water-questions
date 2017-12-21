@@ -1,121 +1,95 @@
-/*
-*@author:cmershen
-*@description:线段树区间更新，求任意区间最大值模板,输入Q a b表示[a,b]区间和，C a b c表示[a,b]区间都加上c
-*@source: poj 3468
-*/
-#include <iostream>
-#include <cstdio>
+#include <bits/stdc++.h>
 using namespace std;
-const int N = 100005;
-#define lson l,m,rt<<1
-#define rson m+1,r,rt<<1|1
 
-__int64 sum[N<<2],add[N<<2];
-struct Node
-{
-    int l,r;
-    int mid()
-    {
-        return (l+r)>>1;
-    }
-} tree[N<<2];
+#define MAXN 100005
+#define LSON l,mid,i<<1
+#define RSON mid+1,r,i<<1|1
+int a[MAXN];
+struct s{
+    int l,r,sum;
+    int lazy;
+}seg[MAXN<<2];
 
-void PushUp(int rt)
-{
-    sum[rt] = sum[rt<<1] + sum[rt<<1|1];
-}
-
-void PushDown(int rt,int m)
-{
-    if(add[rt])
-    {
-        add[rt<<1] += add[rt];
-        add[rt<<1|1] += add[rt];
-        sum[rt<<1] += add[rt] * (m - (m>>1));
-        sum[rt<<1|1] += add[rt] * (m>>1);
-        add[rt] = 0;
+void build(int l, int r, int i) {
+    seg[i].l = l;
+    seg[i].r = r;
+    seg[i].lazy = 0;
+    if (l == r) {
+        seg[i].sum = a[l];
+    } else {
+        int mid = (l + r) >> 1;
+        build(LSON);
+        build(RSON);
+        seg[i].sum = seg[i<<1].sum + seg[i<<1|1].sum;
     }
 }
+//i:节点序号
+void pushdown(int i) {
+    if (seg[i].lazy) {
+        int m = seg[i].r - seg[i].l + 1;//区间长度
+        seg[i<<1].lazy = seg[i].lazy;
+        seg[i<<1].sum = seg[i].lazy * (m - (m>>1));//左孩子sum更新
 
-void build(int l,int r,int rt)
-{
-    tree[rt].l = l;
-    tree[rt].r = r;
-    add[rt] = 0;
-    if(l == r)
-    {
-        scanf("%I64d",&sum[rt]);
-        return ;
+        seg[i<<1|1].lazy = seg[i].lazy;
+        seg[i<<1|1].sum = seg[i].lazy * (m>>1);//右孩子sum更新
+
+        seg[i].lazy = 0;//清空父节点
     }
-    int m = tree[rt].mid();
-    build(lson);
-    build(rson);
-    PushUp(rt);
 }
 
-void update(int c,int l,int r,int rt)
-{
-    if(tree[rt].l == l && r == tree[rt].r)
-    {
-        add[rt] += c;
-        sum[rt] += (__int64)c * (r-l+1);
+void update(int l, int r, int i, int val) {
+    int m = seg[i].r - seg[i].l + 1;//区间长度
+    if (l <= seg[i].l && seg[i].r <= r) {
+        seg[i].lazy = val;//该节点要改成val
+        seg[i].sum = val*m;
         return;
+    } else {
+        pushdown(i);//下放
+        int mid = (seg[i].l + seg[i].r) >> 1;
+        if (l > mid) {
+            update(l, r, i<<1|1, val);
+        } else if (r <= mid) {
+            update(l, r, i<<1, val);
+        } else {
+            update(l, r, i<<1|1, val);
+            update(l, r, i<<1, val);
+        }
+        seg[i].sum = seg[i<<1].sum + seg[i<<1|1].sum;
     }
-    if(tree[rt].l == tree[rt].r) return;
-    PushDown(rt,tree[rt].r - tree[rt].l + 1);
-    int m = tree[rt].mid();
-    if(r <= m) update(c,l,r,rt<<1);
-    else if(l > m) update(c,l,r,rt<<1|1);
-    else
-    {
-        update(c,l,m,rt<<1);
-        update(c,m+1,r,rt<<1|1);
-    }
-    PushUp(rt);
 }
 
-__int64 query(int l,int r,int rt)
-{
-    if(l == tree[rt].l && r == tree[rt].r)
-    {
-        return sum[rt];
-    }
-    PushDown(rt,tree[rt].r - tree[rt].l + 1);
-    int m = tree[rt].mid();
-    __int64 res = 0;
-    if(r <= m) res += query(l,r,rt<<1);
-    else if(l > m) res += query(l,r,rt<<1|1);
-    else
-    {
-       res += query(l,m,rt<<1);
-       res += query(m+1,r,rt<<1|1);
-    }
-    return res;
-}
-
-int main()
-{
-    int n,m;
-    while(~scanf("%d %d",&n,&m))
-    {
-        build(1,n,1);
-        while(m--)
-        {
-            char ch[2];
-            scanf("%s",ch);
-            int a,b,c;
-            if(ch[0] == 'Q')
-            {
-                scanf("%d %d", &a,&b);
-                printf("%I64d\n",query(a,b,1));
-            }
-
-            else
-            {
-                scanf("%d %d %d",&a,&b,&c);
-                update(c,a,b,1);
-            }
+int query(int l, int r, int i) {
+    if (l <= seg[i].l && seg[i].r <= r)
+        return seg[i].sum;
+    else {
+        pushdown(i);
+        int mid = (seg[i].l + seg[i].r) >> 1;
+        if (l > mid) {
+            return query(l, r, i<<1|1);
+        } else if (r <= mid) {
+            return query(l, r, i<<1);
+        } else {
+            return query(l, r, i<<1|1) + query(l, r, i<<1);
         }
     }
-    return 0;
+}
+
+int main() {
+    int n, m;
+    cin >> n;
+    for(int i=1; i<=n; i++) {
+        cin >> a[i];
+    }
+    build(1,n,1);
+    cin >> m;
+    int o,p,q,r;
+    while (m--) {
+        cin >> o >> p >> q;
+        if (o == 0) {
+            cout << query(p ,q, 1) << endl;
+        } else {
+            cin >> r;
+            update(p, q, 1, r);
+        }
+    }
 }

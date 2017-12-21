@@ -36,4 +36,8 @@ int main() {
             if(p[p[j]]==i)
                 cout<<j<<endl;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c3bc45e0265d2a23d3dc1f76e4b01a98c74f8382
