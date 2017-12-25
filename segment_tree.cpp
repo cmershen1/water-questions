@@ -1,78 +1,69 @@
-/*
-*@author:cmershen
-*@description:线段树模板，动态更新求区间最小值问题(单点更新)
-*/
-
-#include<iostream>
-#include<cstdio>
-#include<cstring>
+#include <bits/stdc++.h>
 using namespace std;
 
-int const N=1000010;
+#define MAXN 10005
+#define LSON l,mid,i<<1
+#define RSON mid+1,r,i<<1|1
+int a[MAXN];
+struct s{
+    int l,r;
+    int m;//min
+}seg[MAXN<<2];
 
-struct segtree
-{
-	int left,right;
-	int val;
-}t[4*N];
-int n,q;
-
-void build(int cur,int l,int r)
-{
-	t[cur].left=l;
-	t[cur].right=r;
-	if (l == r) scanf("%d",&t[cur].val);
-	else
-	{
-		int L=cur<<1,R=cur<<1|1;
-		int m=(l+r)>>1;
-		build(L,l,m);
-		build(R,m+1,r);
-		t[cur].val=min(t[L].val,t[R].val);
-	}
+void build(int l, int r, int i) {
+    seg[i].l = l;
+    seg[i].r = r;
+    if (l == r) {
+        seg[i].m = a[l];
+    } else {
+        int mid = (l + r) >> 1;
+        build(LSON);
+        build(RSON);
+        seg[i].m = min(seg[i<<1].m, seg[i<<1|1].m);
+    }
 }
 
-void update(int cur,int i,int val)
-{
-	if (t[cur].left == t[cur].right)
-	{
-		t[cur].val=val;
-		return;
-	}
-	int L=cur<<1,R=cur<<1|1;
-	int m=(t[cur].left+t[cur].right)>>1;
-
-	if (i<=m) update(L,i,val);
-	else update(R,i,val);
-
-	t[cur].val=min(t[L].val,t[R].val);
+void update(int q, int val, int i) {
+    if (seg[i].l == q && seg[i].r == q) {
+        seg[i].m = val;
+    } else {
+        int mid = (seg[i].l + seg[i].r) >> 1;
+        if (q <= mid)
+            update(q, val, i<<1);
+        else if (q > mid)
+            update(q, val, i<<1|1);
+        seg[i].m = min(seg[i<<1].m, seg[i<<1|1].m);
+    }
 }
 
-int query(int cur,int l,int r)
-{
-	if (t[cur].left>=l && t[cur].right<=r) return t[cur].val;
-
-	int L=cur<<1,R=cur<<1|1;
-	int m=(t[cur].left+t[cur].right)>>1;
-
-	if (r<=m) return query(L,l,r);
-	else if (l>m) return query(R,l,r);
-	else return min(query(L,l,r),query(R,l,r));
+int query(int l, int r, int i) {
+    if (l <= seg[i].l && seg[i].r <= r)
+        return seg[i].m;
+    else {
+        int mid = (seg[i].l + seg[i].r) >> 1;
+        if (l > mid)
+            return query(l, r, i<<1|1);
+        else if (r <= mid)
+            return query(l, r, i<<1);
+        else
+            return min(query(l, r, i<<1), query(l, r, i<<1|1));
+    }
 }
-
-int main()
-{
-	//freopen("in","r",stdin);
-	cin>>n;
-	build(1,1,n);
-
-	cin>>q;
-	while (q--)
-	{
-		int c,a,b;
-		scanf("%d%d%d",&c,&a,&b);
-		if (c) update(1,a,b);
-		else printf("%d\n",query(1,a,b));
-	}
-
+int main() {
+    int n, m;
+    cin >> n;
+    for(int i=1; i<=n; i++) {
+        cin >> a[i];
+    }
+    build(1,n,1);
+    cin >> m;
+    int o,p,q;
+    while (m--) {
+        cin >> o >> p >> q;
+        if (o == 0) {
+            cout << query(p ,q, 1) << endl;
+        } else {
+            update(p, q, 1);
+        }
+    }
 }
